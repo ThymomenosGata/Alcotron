@@ -11,7 +11,7 @@ import okhttp3.Response;
 
 public class PortalRest {
 
-    private final static String BASE_URL = "http://82.202.221.114:4567";
+    private final static String BASE_URL = "http://212.92.98.30:4567";
     private static final MediaType JSON = MediaType.parse("application/json");
     private static OkHttpClient client = new OkHttpClient();
 
@@ -40,6 +40,6 @@ public class PortalRest {
     }
 
     public Response get(String... segments) throws IOException {
-        return makeRequest(getRequestBuilder(segments).build());
+        return makeRequest(getRequestBuilder(segments).get().build());
     }
 }

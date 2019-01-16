@@ -24,4 +24,7 @@ public interface ActionDao {
     @Query("Select name from `action`")
     LiveData<List<String>> getAllActions();
 
+    @Query("Select max(id) from `action`")
+    int getMaxId();
+
 }

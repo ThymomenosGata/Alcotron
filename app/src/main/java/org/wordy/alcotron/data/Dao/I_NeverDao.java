@@ -23,4 +23,7 @@ public interface I_NeverDao {
     @Query("Select name from i_never")
     LiveData<List<String>> getAllNever();
 
+    @Query("Select max(id) from i_never")
+    int getMaxId();
+
 }

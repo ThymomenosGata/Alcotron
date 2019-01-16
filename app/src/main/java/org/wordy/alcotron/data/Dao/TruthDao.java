@@ -23,4 +23,7 @@ public interface TruthDao {
     @Query("Select name from truth")
     LiveData<List<String>> getAllTruth();
 
+    @Query("Select max(id) from truth")
+    int getMaxId();
+
 }
