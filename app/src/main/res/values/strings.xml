@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Alcotron</string>
+    <string name="truth_or_doin">Правда или действие</string>
+    <string name="doing_or_doing">Действие или действие</string>
+    <string name="trurth_or_truth">Правда или правда</string>
+    <string name="i_never">Я никогда не</string>
+    <string name="created_by_wordy">Created by Wordy</string>
+</resources>
