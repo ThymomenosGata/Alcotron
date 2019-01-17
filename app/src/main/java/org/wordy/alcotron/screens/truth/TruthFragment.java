@@ -12,11 +12,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.wordy.alcotron.R;
 import org.wordy.alcotron.screens.main.MainFragment;
 
-public class TruthFragment extends Fragment {
+public class TruthFragment extends Fragment implements TruthContract.View {
+
+    private TruthModel model;
+    private TruthPresenter presenter;
+
+    private TextView mTruth;
 
     private LinearLayout mDoingContainer;
     private FragmentManager mFragmentManager;
@@ -36,6 +42,11 @@ public class TruthFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_truth, container, false);
 
+        model = new TruthModel();
+        presenter = new TruthPresenter(model, this);
+
+        mTruth = view.findViewById(R.id.truth_text);
+
         mDoingContainer = view.findViewById(R.id.doing_main);
         mFragmentManager = getFragmentManager();
 
@@ -50,14 +61,14 @@ public class TruthFragment extends Fragment {
             mDoingContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    loadInitialFragment(MainFragment.newInstance());
+                    presenter.navigateToMainFragment(MainFragment.newInstance());
                 }
             });
         } else if (flag == 2) {
             mDoingContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    presenter.setTextTask();
                 }
             });
         }
@@ -65,10 +76,16 @@ public class TruthFragment extends Fragment {
         return view;
     }
 
-    private void loadInitialFragment(Fragment fragment) {
+    @Override
+    public void loadInitialFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
         fragmentTransaction.replace(R.id.scaneRoot, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void setTextAction(String task) {
+        mTruth.setText(task);
     }
 }

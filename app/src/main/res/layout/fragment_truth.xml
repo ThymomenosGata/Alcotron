@@ -32,13 +32,13 @@
                 app:cardCornerRadius="10dp">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/truth_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
-                    android:text="Правда" />
+                    android:text="" />
             </android.support.v7.widget.CardView>
         </LinearLayout>
 
