@@ -3,16 +3,13 @@ package org.wordy.alcotron.data;
 import java.io.IOException;
 
 import okhttp3.HttpUrl;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class PortalRest {
 
     private final static String BASE_URL = "http://212.92.98.30:4567";
-    private static final MediaType JSON = MediaType.parse("application/json");
     private static OkHttpClient client = new OkHttpClient();
 
     public PortalRest() {

@@ -10,13 +10,14 @@ public interface SplashContract {
 
     interface Presenter {
         boolean isOnline(Context context);
+
         void getDatas();
     }
 
     interface Model {
         boolean getActions();
-        boolean getTruth();
 
+        boolean getTruth();
     }
 
 }
