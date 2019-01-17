@@ -12,14 +12,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.wordy.alcotron.R;
 import org.wordy.alcotron.screens.main.MainFragment;
 
-public class DoingFragment extends Fragment {
+public class DoingFragment extends Fragment implements DoingContract.View {
+
+    private DoingPresenter presenter;
+    private DoingModel model;
 
     private LinearLayout mTruthContainer;
     private FragmentManager mFragmentManager;
+
+    private TextView mAction;
 
     private SharedPreferences mFlags;
     public static final String APP_PREFERENCES = "myFlags";
@@ -37,6 +43,11 @@ public class DoingFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_doing, container, false);
 
+        model = new DoingModel();
+        presenter = new DoingPresenter(model, this);
+
+        mAction = view.findViewById(R.id.text);
+
         mTruthContainer = view.findViewById(R.id.truth_main);
         mFragmentManager = getFragmentManager();
 
@@ -51,14 +62,14 @@ public class DoingFragment extends Fragment {
             mTruthContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    loadInitialFragment(MainFragment.newInstance());
+                    presenter.navigateToMainFragment(MainFragment.newInstance());
                 }
             });
         } else if (flag == 1) {
             mTruthContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    presenter.setTextTask();
                 }
             });
         }
@@ -66,10 +77,16 @@ public class DoingFragment extends Fragment {
         return view;
     }
 
-    private void loadInitialFragment(Fragment fragment) {
+    @Override
+    public void loadInitialFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
         fragmentTransaction.replace(R.id.scaneRoot, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void setTextAction(String task) {
+        mAction.setText(task);
     }
 }
