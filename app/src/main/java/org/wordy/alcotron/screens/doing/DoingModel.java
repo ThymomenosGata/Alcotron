@@ -1,12 +1,14 @@
 package org.wordy.alcotron.screens.doing;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class DoingModel implements DoingContract.Model {
 
     private static List<String> mCurrentActions;
-    private Random random;
+    private static List<String> mCurrentActionsHelper = new ArrayList<>();
+    private static Random random = new Random();
 
     public DoingModel() {
     }
@@ -21,10 +23,12 @@ public class DoingModel implements DoingContract.Model {
 
     @Override
     public String getRandomAction() {
-        random = new Random(mCurrentActions.size());
-        int randomNum = random.nextInt();
-        String text = mCurrentActions.get(randomNum);
-        mCurrentActions.remove(randomNum);
+        if (mCurrentActionsHelper.size() == 0) {
+            mCurrentActionsHelper.addAll(mCurrentActions);
+        }
+        int randomNum = random.nextInt(mCurrentActionsHelper.size());
+        String text = mCurrentActionsHelper.get(randomNum);
+        mCurrentActionsHelper.remove(randomNum);
         return text;
     }
 

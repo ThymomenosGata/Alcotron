@@ -35,7 +35,7 @@ public abstract class DataBase extends RoomDatabase {
             synchronized (DataBase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            DataBase.class, "com.ilatis.alcotron.admin.database")
+                            DataBase.class, "org.wordy.alcotron.admin.database")
                             .fallbackToDestructiveMigration()
                             .build();
                 }

@@ -48,6 +48,8 @@ public class DoingFragment extends Fragment implements DoingContract.View {
 
         mAction = view.findViewById(R.id.text);
 
+        presenter.setTextTask();
+
         mTruthContainer = view.findViewById(R.id.truth_main);
         mFragmentManager = getFragmentManager();
 

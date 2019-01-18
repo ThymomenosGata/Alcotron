@@ -18,11 +18,6 @@ public class Action {
     public Action() {
     }
 
-    public Action(int langId, String name, int selectId) {
-        this.langId = langId;
-        this.name = name;
-        this.selectId = selectId;
-    }
 
     public int getId() {
         return id;
@@ -68,16 +63,12 @@ public class Action {
         return jsonObject;
     }
 
-    public static Action fromJson(JSONObject jsonObject) {
+    public static Action fromJson(JSONObject jsonObject) throws JSONException {
         Action action = new Action();
-        try {
-            action.id = jsonObject.getInt("id");
-            action.langId = jsonObject.getInt("langID");
-            action.name = jsonObject.getString("name");
-            action.selectId = 0;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        action.id = jsonObject.getInt("id");
+        action.langId = jsonObject.getInt("langId");
+        action.name = jsonObject.getString("name");
+        action.selectId = 0;
         return action;
     }
 

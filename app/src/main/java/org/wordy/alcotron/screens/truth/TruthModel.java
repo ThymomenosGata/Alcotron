@@ -1,12 +1,14 @@
 package org.wordy.alcotron.screens.truth;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class TruthModel implements TruthContract.Model {
 
     private static List<String> mCurrentTruths;
-    private Random random;
+    private static List<String> mCurrentTruthsHelper = new ArrayList<>();
+    private static Random random = new Random();
 
     public TruthModel() {
     }
@@ -21,10 +23,12 @@ public class TruthModel implements TruthContract.Model {
 
     @Override
     public String getRandomAction() {
-        random = new Random(mCurrentTruths.size());
-        int randomNum = random.nextInt();
-        String text = mCurrentTruths.get(randomNum);
-        mCurrentTruths.remove(randomNum);
+        if (mCurrentTruthsHelper.size() == 0) {
+            mCurrentTruthsHelper.addAll(mCurrentTruths);
+        }
+        int randomNum = random.nextInt(mCurrentTruthsHelper.size());
+        String text = mCurrentTruthsHelper.get(randomNum);
+        mCurrentTruthsHelper.remove(randomNum);
         return text;
     }
 }

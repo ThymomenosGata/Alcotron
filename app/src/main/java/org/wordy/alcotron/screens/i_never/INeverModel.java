@@ -1,12 +1,14 @@
 package org.wordy.alcotron.screens.i_never;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class INeverModel implements INeverContract.Model {
 
     private static List<String> mCurrentNevers;
-    private Random random;
+    private static List<String> mCurrentNeversHelper = new ArrayList<>();
+    private static Random random = new Random();
 
     public INeverModel() {
     }
@@ -21,10 +23,12 @@ public class INeverModel implements INeverContract.Model {
 
     @Override
     public String getRandomAction() {
-        random = new Random(mCurrentNevers.size());
-        int randomNum = random.nextInt();
-        String text = mCurrentNevers.get(randomNum);
-        mCurrentNevers.remove(randomNum);
+        if (mCurrentNeversHelper.size() == 0) {
+            mCurrentNeversHelper.addAll(mCurrentNevers);
+        }
+        int randomNum = random.nextInt(mCurrentNeversHelper.size());
+        String text = mCurrentNeversHelper.get(randomNum);
+        mCurrentNeversHelper.remove(randomNum);
         return text;
     }
 }

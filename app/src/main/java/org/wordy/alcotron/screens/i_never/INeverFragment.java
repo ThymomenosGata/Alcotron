@@ -38,6 +38,8 @@ public class INeverFragment extends Fragment implements INeverContract.View {
         model = new INeverModel();
         presenter = new INeverPresenter(model, this);
 
+        presenter.setTextTask();
+
         buttonNever.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

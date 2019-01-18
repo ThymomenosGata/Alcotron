@@ -19,12 +19,6 @@ public class Truth {
     public Truth() {
     }
 
-    public Truth(int langId, String name, int selectId) {
-        this.langId = langId;
-        this.name = name;
-        this.selectId = selectId;
-    }
-
     public int getId() {
         return id;
     }
@@ -69,16 +63,12 @@ public class Truth {
         return jsonObject;
     }
 
-    public static Truth fromJson(JSONObject jsonObject) {
+    public static Truth fromJson(JSONObject jsonObject) throws JSONException {
         Truth truth = new Truth();
-        try {
-            truth.id = jsonObject.getInt("id");
-            truth.langId = jsonObject.getInt("langID");
-            truth.name = jsonObject.getString("name");
-            truth.selectId = 0;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        truth.id = jsonObject.getInt("id");
+        truth.langId = jsonObject.getInt("langId");
+        truth.name = jsonObject.getString("name");
+        truth.selectId = 0;
         return truth;
     }
 

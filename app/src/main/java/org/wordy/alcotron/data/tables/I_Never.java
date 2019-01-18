@@ -19,12 +19,6 @@ public class I_Never {
     public I_Never() {
     }
 
-    public I_Never(int langId, String name, int selectId) {
-        this.langId = langId;
-        this.name = name;
-        this.selectId = selectId;
-    }
-
     public int getId() {
         return id;
     }
@@ -70,16 +64,12 @@ public class I_Never {
         return jsonObject;
     }
 
-    public static I_Never fromJson(JSONObject jsonObject) {
+    public static I_Never fromJson(JSONObject jsonObject) throws JSONException {
         I_Never i_never = new I_Never();
-        try {
-            i_never.id = jsonObject.getInt("id");
-            i_never.langId = jsonObject.getInt("langID");
-            i_never.name = jsonObject.getString("name");
-            i_never.selectId = 0;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        i_never.id = jsonObject.getInt("id");
+        i_never.langId = jsonObject.getInt("langId");
+        i_never.name = jsonObject.getString("name");
+        i_never.selectId = 0;
         return i_never;
     }
 }

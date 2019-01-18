@@ -50,6 +50,8 @@ public class TruthFragment extends Fragment implements TruthContract.View {
         mDoingContainer = view.findViewById(R.id.doing_main);
         mFragmentManager = getFragmentManager();
 
+        presenter.setTextTask();
+
         mFlags = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         int flag = -1;
 
