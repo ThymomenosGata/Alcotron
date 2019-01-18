@@ -5,4 +5,7 @@
     <string name="trurth_or_truth">Правда или правда</string>
     <string name="i_never">Я никогда не</string>
     <string name="created_by_wordy">Created by Wordy</string>
+    <string name="truth">Правда</string>
+    <string name="doing">Действие</string>
+    <string name="next">Далее</string>
 </resources>

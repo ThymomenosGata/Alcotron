@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".screens.splash.SplashActivity">
 
     <ImageView
@@ -22,7 +23,7 @@
         app:layout_constraintVertical_bias="0.984" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/created"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -30,7 +31,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/created_by_wordy"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,9 +41,9 @@
         app:layout_constraintVertical_bias="0.956" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/logo_company"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -52,5 +53,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.352"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        android:src="@drawable/wordy_logo" />
 </android.support.constraint.ConstraintLayout>

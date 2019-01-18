@@ -8,7 +8,10 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import org.wordy.alcotron.R;
@@ -28,7 +31,7 @@ public class ChoiseActivity extends AppCompatActivity {
 
     private DataBase dataBase;
 
-    private LinearLayout mTruthOrTruth, mTruthOrDoing, mDoinOrDoing, mINever;
+    private CardView mTruthOrTruth, mTruthOrDoing, mDoinOrDoing, mINever;
     private SharedPreferences mFlags;
     private Editor editor;
     public static final String APP_PREFERENCES = "myFlags";
