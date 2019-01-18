@@ -40,8 +40,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Правда"
+                    android:text="@string/truth"
                     android:textColor="@android:color/black"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </android.support.v7.widget.CardView>
         </LinearLayout>
@@ -75,8 +76,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Действие"
+                    android:text="@string/doing"
                     android:textColor="@android:color/black"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </android.support.v7.widget.CardView>
         </LinearLayout>
