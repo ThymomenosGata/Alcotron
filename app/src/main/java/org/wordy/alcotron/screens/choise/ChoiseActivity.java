@@ -1,18 +1,32 @@
 package org.wordy.alcotron.screens.choise;
 
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import org.wordy.alcotron.R;
+import org.wordy.alcotron.data.DataBase;
+import org.wordy.alcotron.screens.doing.DoingModel;
+import org.wordy.alcotron.screens.i_never.INeverModel;
 import org.wordy.alcotron.screens.main.MainActivity;
+import org.wordy.alcotron.screens.truth.TruthModel;
+
+import java.util.List;
 
 public class ChoiseActivity extends AppCompatActivity {
+
+    private TruthModel truthModel;
+    private INeverModel neverModel;
+    private DoingModel doingModel;
+
+    private DataBase dataBase;
 
     private LinearLayout mTruthOrTruth, mTruthOrDoing, mDoinOrDoing, mINever;
     private SharedPreferences mFlags;
@@ -24,6 +38,33 @@ public class ChoiseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choise);
+
+        truthModel = new TruthModel();
+        neverModel = new INeverModel();
+        doingModel = new DoingModel();
+
+        dataBase = DataBase.getDatabase(getApplication());
+
+        dataBase.actionDao().getAllActions().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(@Nullable List<String> strings) {
+                doingModel.setActions(strings);
+            }
+        });
+
+        dataBase.truthDao().getAllTruth().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(@Nullable List<String> strings) {
+                truthModel.setNevers(strings);
+            }
+        });
+
+        dataBase.i_neverDao().getAllNever().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(@Nullable List<String> strings) {
+                neverModel.setNevers(strings);
+            }
+        });
 
         mFlags = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 

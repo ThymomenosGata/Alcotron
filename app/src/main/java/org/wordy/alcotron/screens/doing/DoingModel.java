@@ -1,32 +1,30 @@
 package org.wordy.alcotron.screens.doing;
 
-import org.wordy.alcotron.data.tables.Action;
-
 import java.util.List;
 import java.util.Random;
 
 public class DoingModel implements DoingContract.Model {
 
-    private static List<Action> actions;
+    private static List<String> mCurrentActions;
     private Random random;
 
     public DoingModel() {
     }
 
-    public static List<Action> getActions() {
-        return actions;
+    public List<String> getActions() {
+        return mCurrentActions;
     }
 
-    public static void setActions(List<Action> actions) {
-        DoingModel.actions = actions;
+    public void setActions(List<String> actions) {
+        mCurrentActions = actions;
     }
 
     @Override
     public String getRandomAction() {
-        random = new Random(actions.size());
+        random = new Random(mCurrentActions.size());
         int randomNum = random.nextInt();
-        String text = actions.get(randomNum).getName();
-        actions.remove(randomNum);
+        String text = mCurrentActions.get(randomNum);
+        mCurrentActions.remove(randomNum);
         return text;
     }
 

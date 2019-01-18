@@ -1,32 +1,30 @@
 package org.wordy.alcotron.screens.i_never;
 
-import org.wordy.alcotron.data.tables.I_Never;
-
 import java.util.List;
 import java.util.Random;
 
 public class INeverModel implements INeverContract.Model {
 
-    private static List<I_Never> nevers;
+    private static List<String> mCurrentNevers;
     private Random random;
 
     public INeverModel() {
     }
 
-    public static List<I_Never> getNevers() {
-        return nevers;
+    public List<String> getNevers() {
+        return mCurrentNevers;
     }
 
-    public static void setNevers(List<I_Never> nevers) {
-        INeverModel.nevers = nevers;
+    public void setNevers(List<String> nevers) {
+        mCurrentNevers = nevers;
     }
 
     @Override
     public String getRandomAction() {
-        random = new Random(nevers.size());
+        random = new Random(mCurrentNevers.size());
         int randomNum = random.nextInt();
-        String text = nevers.get(randomNum).getName();
-        nevers.remove(randomNum);
+        String text = mCurrentNevers.get(randomNum);
+        mCurrentNevers.remove(randomNum);
         return text;
     }
 }
