@@ -22,6 +22,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
         if (presenter.isOnline(getApplicationContext())) {
             presenter.getDatas();
+            finish();
         }
 
     }
