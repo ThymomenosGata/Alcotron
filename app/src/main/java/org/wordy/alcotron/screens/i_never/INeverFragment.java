@@ -74,7 +74,7 @@ public class INeverFragment extends Fragment implements INeverContract.View {
         buttonNever.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ads_count < 6) {
+                if (ads_count < 10) {
                     updateAdsFlag();
                     presenter.setTextTask();
                 } else {

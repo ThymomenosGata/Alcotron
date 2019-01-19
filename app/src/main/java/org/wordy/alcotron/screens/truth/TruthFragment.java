@@ -86,7 +86,7 @@ public class TruthFragment extends Fragment implements TruthContract.View {
         mDoingContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ads_count < 6) {
+                if (ads_count < 10) {
                     updateAdsFlag();
                     navigateAfterAds();
                 } else {
