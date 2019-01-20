@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import org.wordy.alcotron.R;
@@ -39,7 +40,13 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
     @Override
     public void navigateToChoise() {
-        startActivity(new Intent(SplashActivity.this, ChoiseActivity.class));
-        finish();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashActivity.this, ChoiseActivity.class));
+                finish();
+            }
+        }, 2000);
     }
 }
