@@ -55,7 +55,7 @@ public class TruthFragment extends Fragment implements TruthContract.View {
 
         MobileAds.initialize(getActivity(), "ca-app-pub-8292159750506516~6181036832");
         mInterstitialAd = new InterstitialAd(getActivity());
-        mInterstitialAd.setAdUnitId(getResources().getString(R.string.ads_id));
+        mInterstitialAd.setAdUnitId(getResources().getString(R.string.test_ads));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
@@ -92,10 +92,11 @@ public class TruthFragment extends Fragment implements TruthContract.View {
                 } else {
                     if (mInterstitialAd.isLoaded()) {
                         mInterstitialAd.show();
-                        navigateBeforeAds();
                     } else {
-                        navigateBeforeAds();
+                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                        mInterstitialAd.show();
                     }
+                    navigateBeforeAds();
                 }
             }
         });
@@ -123,6 +124,9 @@ public class TruthFragment extends Fragment implements TruthContract.View {
     }
 
     public void navigateBeforeAds() {
+        if (!mInterstitialAd.isLoaded()) {
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        }
         ads_count = 0;
         setAdsCount(ads_count);
         navigateAfterAds();

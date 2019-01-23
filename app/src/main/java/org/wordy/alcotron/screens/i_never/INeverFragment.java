@@ -49,7 +49,7 @@ public class INeverFragment extends Fragment implements INeverContract.View {
 
         MobileAds.initialize(getActivity(), "ca-app-pub-8292159750506516~6181036832");
         mInterstitialAd = new InterstitialAd(getActivity());
-        mInterstitialAd.setAdUnitId(getResources().getString(R.string.ads_id));
+        mInterstitialAd.setAdUnitId(getResources().getString(R.string.test_ads));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
@@ -80,10 +80,11 @@ public class INeverFragment extends Fragment implements INeverContract.View {
                 } else {
                     if (mInterstitialAd.isLoaded()) {
                         mInterstitialAd.show();
-                        navigateBeforeAds();
                     } else {
-                        navigateBeforeAds();
+                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                        mInterstitialAd.show();
                     }
+                    navigateBeforeAds();
                 }
             }
         });
@@ -108,6 +109,9 @@ public class INeverFragment extends Fragment implements INeverContract.View {
 
     public void navigateBeforeAds() {
         ads_count = 0;
+        if (!mInterstitialAd.isLoaded()) {
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        }
         setAdsCount(ads_count);
         presenter.setTextTask();
     }

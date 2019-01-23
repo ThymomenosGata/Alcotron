@@ -10,6 +10,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import org.wordy.alcotron.R;
 import org.wordy.alcotron.data.DataBase;
@@ -27,6 +29,9 @@ public class ChoiseActivity extends AppCompatActivity {
     private DoingModel doingModel;
 
     private DataBase dataBase;
+
+    private LinearLayout mContainer;
+    private ProgressBar mProgress;
 
     private CardView mTruthOrTruth, mTruthOrDoing, mDoinOrDoing, mINever;
     private SharedPreferences mFlags;
@@ -72,11 +77,14 @@ public class ChoiseActivity extends AppCompatActivity {
         mTruthOrDoing = findViewById(R.id.truth_or_doin);
         mDoinOrDoing = findViewById(R.id.doing_or_doing);
         mINever = findViewById(R.id.i_never);
+        mContainer = findViewById(R.id.container_choise);
+        mProgress = findViewById(R.id.progressBar);
         editor = mFlags.edit();
 
         mTruthOrDoing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isVisible();
                 editor.putInt(APP_PREFERENCES_FLAG, 0);
                 editor.apply();
                 Intent intent = new Intent(ChoiseActivity.this, MainActivity.class);
@@ -87,6 +95,7 @@ public class ChoiseActivity extends AppCompatActivity {
         mDoinOrDoing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isVisible();
                 editor.putInt(APP_PREFERENCES_FLAG, 1);
                 editor.apply();
                 Intent intent = new Intent(ChoiseActivity.this, MainActivity.class);
@@ -97,6 +106,7 @@ public class ChoiseActivity extends AppCompatActivity {
         mTruthOrTruth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isVisible();
                 editor.putInt(APP_PREFERENCES_FLAG, 2);
                 editor.apply();
                 Intent intent = new Intent(ChoiseActivity.this, MainActivity.class);
@@ -107,6 +117,7 @@ public class ChoiseActivity extends AppCompatActivity {
         mINever.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isVisible();
                 editor.putInt(APP_PREFERENCES_FLAG, 3);
                 editor.apply();
                 Intent intent = new Intent(ChoiseActivity.this, MainActivity.class);
@@ -115,4 +126,18 @@ public class ChoiseActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mContainer.setVisibility(View.VISIBLE);
+        mProgress.setVisibility(View.GONE);
+    }
+
+    private void isVisible() {
+        mContainer.setVisibility(View.GONE);
+        mProgress.setVisibility(View.VISIBLE);
+    }
+
+
 }

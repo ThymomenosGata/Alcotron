@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import org.wordy.alcotron.R;
 import org.wordy.alcotron.screens.doing.DoingFragment;
@@ -26,6 +27,7 @@ public class MainFragment extends Fragment {
 
 
     private LinearLayout mTruthContainer, mDoingContainer;
+    private ProgressBar mProgress;
     private FragmentManager mFragmentManager;
 
 
@@ -36,6 +38,7 @@ public class MainFragment extends Fragment {
 
         mTruthContainer = view.findViewById(R.id.truth_main);
         mDoingContainer = view.findViewById(R.id.doing_main);
+        mProgress = view.findViewById(R.id.progressBar);
 
         mFragmentManager = getFragmentManager();
 
@@ -43,6 +46,7 @@ public class MainFragment extends Fragment {
         mTruthContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                reVisible();
                 loadInitialFragment(TruthFragment.newInstance());
             }
         });
@@ -50,6 +54,7 @@ public class MainFragment extends Fragment {
         mDoingContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                reVisible();
                 loadInitialFragment(DoingFragment.newInstance());
             }
         });
@@ -62,6 +67,12 @@ public class MainFragment extends Fragment {
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         fragmentTransaction.replace(R.id.scaneRoot, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void reVisible() {
+        mTruthContainer.setVisibility(View.GONE);
+        mDoingContainer.setVisibility(View.GONE);
+        mProgress.setVisibility(View.VISIBLE);
     }
 
 }
